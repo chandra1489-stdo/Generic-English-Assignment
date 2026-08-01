@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CREATIVITY | GE Team 5 Presentation</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            500: '#d946ef',
+                            600: '#c026d3',
+                            700: '#a21caf',
+                            900: '#581c87',
+                        },
+                        neon: {
+                            purple: '#a855f7',
+                            pink: '#ec4899',
+                            cyan: '#06b6d4',
+                            amber: '#f59e0b',
+                            emerald: '#10b981'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 3s ease-in-out infinite alternate',
+                        'spin-slow': 'spin 12s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        },
+                        glow: {
+                            '0%': { filter: 'drop-shadow(0 0 10px rgba(217, 70, 239, 0.4))' },
+                            '100%': { filter: 'drop-shadow(0 0 25px rgba(6, 182, 212, 0.8))' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #030712;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+
+        .font-display {
+            font-family: 'Outfit', 'Space Grotesk', sans-serif;
+        }
+
+        /* Glassmorphism Panels */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .glass-panel-glow {
+            background: rgba(30, 27, 75, 0.45);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(217, 70, 239, 0.3);
+            box-shadow: 0 12px 40px 0 rgba(168, 85, 247, 0.25);
+        }
+
+        /* Slide Container and Transitions */
+        .slide-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.96) translateY(24px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        .slide.exit-left {
+            opacity: 0;
+            transform: scale(0.92) translateX(-80px);
+        }
+
+        /* Dynamic Animated Text Gradients & Shadows */
+        .text-gradient-creative {
+            background: linear-gradient(135deg, #f43f5e 0%, #ec4899 35%, #a855f7 70%, #06b6d4 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShimmer 6s ease infinite alternate;
+        }
+
+        @keyframes textShimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .heading-shadow-pink {
+            filter: drop-shadow(0 2px 10px rgba(217, 70, 239, 0.4));
+        }
+
+        /* Gallery Zoom & Effects */
+        .img-creative-wrapper {
+            overflow: hidden;
+            position: relative;
+            border-radius: 1.25rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .img-creative-wrapper img {
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .img-creative-wrapper:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.8);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(217, 70, 239, 0.4);
+            border-radius: 9999px;
+        }
+
+        /* Interactive Range Slider styling */
+        input[type=range] {
+            accent-color: #d946ef;
+        }
+    </style>
+</head>
+<body class="h-full w-full select-none bg-slate-950 text-slate-100 overflow-hidden">
+
+    <canvas id="ambientCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-50"></canvas>
+
+    <div class="fixed -top-40 -left-40 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="fixed top-1/2 -right-40 w-[32rem] h-[32rem] bg-pink-600/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="fixed -bottom-40 left-1/3 w-96 h-96 bg-cyan-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- MAIN APP STRUCTURE -->
+    <div class="relative z-10 flex flex-col h-screen w-screen justify-between p-3 md:p-5">
+        
+        <!-- HEADER / NAVIGATION TOP BAR -->
+        <header class="glass-panel rounded-2xl px-5 py-3 flex items-center justify-between shadow-2xl z-50">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-pink-500 via-purple-600 to-cyan-400 p-[2px] flex items-center justify-center shadow-lg shadow-pink-500/20">
+                    <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
+                        <i class="fa-solid fa-lightbulb text-pink-400 text-sm animate-pulse"></i>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="font-display font-extrabold text-sm md:text-base tracking-widest text-white flex items-center gap-2">
+                        CREATIVITY <span class="text-xs font-normal text-pink-400 border border-pink-500/30 px-2 py-0.5 rounded-full bg-pink-500/10">GE TEAM 5</span>
+                    </h1>
+                    <p class="text-[11px] text-slate-400 flex items-center gap-1.5">
+                        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        Think Different. Create Better. Inspire the World.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Slide Progress Counter & Action Buttons -->
+            <div class="flex items-center space-x-2.5 md:space-x-4">
+                <div class="hidden sm:flex items-center space-x-2 text-xs text-slate-300 bg-slate-900/80 px-3.5 py-1.5 rounded-full border border-slate-800">
+                    <span id="slideCurrent" class="text-pink-400 font-bold">01</span>
+                    <span>/</span>
+                    <span id="slideTotal">08</span>
+                </div>
+
+                <!-- Auto-Play Toggle -->
+                <button id="autoPlayBtn" onclick="toggleAutoPlay()" class="flex items-center space-x-2 text-xs bg-slate-800/80 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-xl border border-slate-700 transition" title="Toggle Slide Auto-Play">
+                    <i id="autoPlayIcon" class="fa-solid fa-play text-pink-400"></i>
+                    <span id="autoPlayText" class="hidden md:inline">Auto-Play</span>
+                </button>
+
+                <!-- Classroom Idea Generator Button -->
+                <button onclick="toggleWorkshopModal()" class="flex items-center space-x-2 text-xs bg-slate-800/80 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-xl border border-slate-700 transition" title="Classroom Idea Generator">
+                    <i class="fa-solid fa-wand-magic-sparkles text-purple-400"></i>
+                    <span class="hidden md:inline">Idea Generator</span>
+                </button>
+
+                <!-- Grid Overview Button -->
+                <button onclick="toggleGridModal()" class="flex items-center space-x-2 text-xs bg-slate-800/80 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-xl border border-slate-700 transition" title="Slide Overview Grid">
+                    <i class="fa-solid fa-grip text-cyan-400"></i>
+                    <span class="hidden md:inline">Grid</span>
+                </button>
+
+                <!-- Presenter Notes Button -->
+                <button onclick="togglePresenterNotes()" class="flex items-center space-x-2 text-xs bg-slate-800/80 hover:bg-slate-700 text-slate-200 px-3 py-1.5 rounded-xl border border-slate-700 transition" title="Presenter Script">
+                    <i class="fa-solid fa-book-open text-amber-400"></i>
+                    <span class="hidden md:inline">Script</span>
+                </button>
+
+                <!-- Fullscreen Button -->
+                <button onclick="toggleFullScreen()" class="text-xs bg-slate-800/80 hover:bg-slate-700 text-slate-200 p-2 rounded-xl border border-slate-700 transition" title="Fullscreen">
+                    <i class="fa-solid fa-expand text-slate-300"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN SLIDE DISPLAY AREA -->
+        <main class="relative flex-1 my-3 overflow-hidden rounded-3xl">
+            <div class="slide-container" id="slideContainer">
+
+                <!-- SLIDE 1: HERO TITLE SLIDE -->
+                <div class="slide active" data-slide="1" data-notes="Good morning everyone! Today Team 5 presents CREATIVITY. We will explore how creativity shapes art, science, and modern digital web design.">
+                    <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                        <div class="lg:col-span-6 space-y-4 text-left">
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/30 text-pink-300 text-xs font-semibold tracking-wider">
+                                <i class="fa-solid fa-sparkles text-pink-400 animate-pulse"></i>
+                                TEAM 5 GE PRESENTATION
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <h1 class="font-display text-4xl sm:text-6xl font-extrabold text-white tracking-normal drop-shadow-md">
+                                    CREATIVITY
+                                </h1>
+                                <p class="text-xl sm:text-2xl font-bold text-gradient-creative heading-shadow-pink">
+                                    Think Different. Create Better. Inspire the World.
+                                </p>
+                                <div class="w-24 h-1.5 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 rounded-full shadow-lg shadow-pink-500/30"></div>
+                            </div>
+
+                            <p class="text-slate-300 text-base font-normal leading-relaxed">
+                                Transforming fresh ideas into impressive digital experiences, attractive web designs, and smart marketing tools.
+                            </p>
+
+                            <!-- Presenter Badges -->
+                            <div class="pt-3 border-t border-slate-800/80">
+                                <p class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold mb-2">Presented By Team 5</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <div class="glass-panel px-3 py-1.5 rounded-xl flex items-center gap-2 border border-purple-500/30">
+                                        <div class="w-6 h-6 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-300 font-bold text-xs">CS</div>
+                                        <span class="text-xs font-medium text-slate-200">Chandra Shekar Behara</span>
+                                    </div>
+                                    <div class="glass-panel px-3 py-1.5 rounded-xl flex items-center gap-2 border border-pink-500/30">
+                                        <div class="w-6 h-6 rounded-lg bg-pink-500/20 flex items-center justify-center text-pink-300 font-bold text-xs">AN</div>
+                                        <span class="text-xs font-medium text-slate-200">Anamika</span>
+                                    </div>
+                                    <div class="glass-panel px-3 py-1.5 rounded-xl flex items-center gap-2 border border-cyan-500/30">
+                                        <div class="w-6 h-6 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-300 font-bold text-xs">JB</div>
+                                        <span class="text-xs font-medium text-slate-200">Josh Bekashah S J</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hero Photography Grid (4 Images Collage) -->
+                        <div class="lg:col-span-6 relative">
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="img-creative-wrapper h-44 sm:h-48">
+                                    <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80" alt="Artistic Spark" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                                    <span class="absolute bottom-2 left-2.5 text-[11px] font-bold text-white bg-black/60 px-2 py-0.5 rounded">Artistic Spark</span>
+                                </div>
+                                <div class="img-creative-wrapper h-44 sm:h-48 mt-3">
+                                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Digital Code" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                                    <span class="absolute bottom-2 left-2.5 text-[11px] font-bold text-white bg-black/60 px-2 py-0.5 rounded">Digital Code</span>
+                                </div>
+                                <div class="img-creative-wrapper h-44 sm:h-48 -mt-1">
+                                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="Brainstorming" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                                    <span class="absolute bottom-2 left-2.5 text-[11px] font-bold text-white bg-black/60 px-2 py-0.5 rounded">Brainstorming</span>
+                                </div>
+                                <div class="img-creative-wrapper h-44 sm:h-48 mt-2">
+                                    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" alt="Marketing Strategy" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                                    <span class="absolute bottom-2 left-2.5 text-[11px] font-bold text-white bg-black/60 px-2 py-0.5 rounded">Marketing Strategy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 2: WHAT IS CREATIVITY -->
+                <div class="slide" data-slide="2" data-notes="Creativity is simply generating original ideas and solving problems in new ways. Everyone has creative potential!">
+                    <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-5 space-y-3 order-2 lg:order-1">
+                            <div class="grid grid-cols-1 gap-3">
+                                <div class="img-creative-wrapper h-48 border border-purple-500/30">
+                                    <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=800&q=80" alt="Uninhibited Curiosity" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                                    <span class="absolute bottom-2 left-3 text-xs text-white font-medium">Uninhibited Curiosity</span>
+                                </div>
+                                <div class="img-creative-wrapper h-48 border border-pink-500/30">
+                                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" alt="Creative Execution" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                                    <span class="absolute bottom-2 left-3 text-xs text-white font-medium">Creative Execution</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-7 space-y-4 text-left order-1 lg:order-2">
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-semibold">
+                                <i class="fa-solid fa-brain text-cyan-400"></i>
+                                BASIC DEFINITION
+                            </div>
+
+                            <div class="space-y-1">
+                                <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-normal drop-shadow-md">
+                                    What is <span class="text-gradient-creative">Creativity?</span>
+                                </h2>
+                                <div class="w-20 h-1 bg-gradient-to-r from-pink-500 to-cyan-400 rounded-full"></div>
+                            </div>
+
+                            <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+                                Creativity is the ability to produce original ideas, solve everyday challenges, and turn imagination into real-world projects.
+                            </p>
+
+                            <!-- Simple 4 Bullet Cards -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                                <div class="glass-panel p-3.5 rounded-xl border-l-4 border-l-pink-500">
+                                    <div class="flex items-center space-x-2.5 mb-1">
+                                        <i class="fa-solid fa-lightbulb text-pink-400 text-sm"></i>
+                                        <h3 class="font-bold text-sm text-white">Thinking Beyond Ordinary</h3>
+                                    </div>
+                                    <p class="text-xs text-slate-400">Exploring fresh ideas without strict limits.</p>
+                                </div>
+
+                                <div class="glass-panel p-3.5 rounded-xl border-l-4 border-l-purple-500">
+                                    <div class="flex items-center space-x-2.5 mb-1">
+                                        <i class="fa-solid fa-puzzle-piece text-purple-400 text-sm"></i>
+                                        <h3 class="font-bold text-sm text-white">Smart Problem Solving</h3>
+                                    </div>
+                                    <p class="text-xs text-slate-400">Finding clever ways to resolve tricky tasks.</p>
+                                </div>
+
+                                <div class="glass-panel p-3.5 rounded-xl border-l-4 border-l-cyan-500">
+                                    <div class="flex items-center space-x-2.5 mb-1">
+                                        <i class="fa-solid fa-code text-cyan-400 text-sm"></i>
+                                        <h3 class="font-bold text-sm text-white">Digital Crafting</h3>
+                                    </div>
+                                    <p class="text-xs text-slate-400">Building beautiful websites and apps.</p>
+                                </div>
+
+                                <div class="glass-panel p-3.5 rounded-xl border-l-4 border-l-amber-500">
+                                    <div class="flex items-center space-x-2.5 mb-1">
+                                        <i class="fa-solid fa-user-check text-amber-400 text-sm"></i>
+                                        <h3 class="font-bold text-sm text-white">Skill for Everyone</h3>
+                                    </div>
+                                    <p class="text-xs text-slate-400">Every single person has creative potential.</p>
+                                </div>
+                            </div>
+
+                            <!-- Quote Card -->
+                            <div class="glass-panel-glow p-4 rounded-xl flex items-start gap-3 border border-purple-500/30">
+                                <div class="text-3xl text-purple-400 font-serif leading-none mt-1">“</div>
+                                <div>
+                                    <p class="text-sm font-medium text-purple-100 italic">"Creativity is intelligence having fun."</p>
+                                    <p class="text-xs text-purple-300 font-semibold mt-1">— Albert Einstein</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 3: WHY IS CREATIVITY IMPORTANT -->
+                <div class="slide" data-slide="3" data-notes="Why is creativity critical? Because companies like Apple, Google, and Canva succeed using creative products and marketing!">
+                    <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-4 text-left">
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-semibold">
+                                <i class="fa-solid fa-chart-line text-purple-400"></i>
+                                KEY BENEFITS
+                            </div>
+
+                            <div class="space-y-1">
+                                <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-normal drop-shadow-md">
+                                    Why is Creativity <span class="text-gradient-creative">Important?</span>
+                                </h2>
+                                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
+                            </div>
+
+                            <p class="text-slate-300 text-base leading-relaxed">
+                                Creativity gives individuals and companies a strong competitive edge in the modern world.
+                            </p>
+
+                            <div class="space-y-2.5">
+                                <div class="glass-panel p-3 rounded-xl flex items-center space-x-3">
+                                    <div class="w-9 h-9 rounded-lg bg-pink-500/20 flex items-center justify-center text-pink-400 flex-shrink-0">
+                                        <i class="fa-solid fa-bolt text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-sm text-white">Encourages Continuous Innovation</h3>
+                                        <p class="text-xs text-slate-400">Keeps tech and business moving forward rapidly.</p>
+                                    </div>
+                                </div>
+
+                                <div class="glass-panel p-3 rounded-xl flex items-center space-x-3">
+                                    <div class="w-9 h-9 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-400 flex-shrink-0">
+                                        <i class="fa-solid fa-users text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-sm text-white">Helps Leadership & Teamwork</h3>
+                                        <p class="text-xs text-slate-400">Brings people together to solve big team goals.</p>
+                                    </div>
+                                </div>
+
+                                <div class="glass-panel p-3 rounded-xl flex items-center space-x-3">
+                                    <div class="w-9 h-9 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-400 flex-shrink-0">
+                                        <i class="fa-solid fa-briefcase text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-sm text-white">Opens Great Career Opportunities</h3>
+                                        <p class="text-xs text-slate-400">Attractive visual design builds trust and business growth.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Famous Examples -->
+                            <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-wrap items-center justify-between gap-2">
+                                <span class="text-xs text-slate-400 font-medium">Top Brands Thriving on Creativity:</span>
+                                <div class="flex items-center space-x-2 text-xs font-bold text-slate-200">
+                                    <span class="px-2.5 py-1 rounded bg-slate-800 border border-slate-700 flex items-center gap-1.5"><i class="fa-brands fa-apple text-white"></i> Apple</span>
+                                    <span class="px-2.5 py-1 rounded bg-slate-800 border border-slate-700 flex items-center gap-1.5"><i class="fa-brands fa-google text-red-400"></i> Google</span>
+                                    <span class="px-2.5 py-1 rounded bg-slate-800 border border-slate-700 flex items-center gap-1.5"><i class="fa-solid fa-palette text-cyan-400"></i> Canva</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gallery Right side -->
+                        <div class="lg:col-span-5 relative">
+                            <div class="img-creative-wrapper h-88">
+                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Team Creative Strategy" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-4 left-4 right-4">
+                                    <span class="text-xs bg-purple-600/90 text-white font-bold px-2.5 py-1 rounded-full">Team Collaboration</span>
+                                    <p class="text-xs text-slate-200 mt-2">"Great things in business are never done by one person. They're done by a team."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 4: TYPES OF CREATIVITY -->
+                <div class="slide" data-slide="4" data-notes="There are 5 simple types of creativity: Artistic, Scientific, Business, Digital, and Social!">
+                    <div class="max-w-6xl w-full space-y-4 text-left">
+                        <div class="flex flex-col md:flex-row md:items-end justify-between gap-3">
+                            <div>
+                                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/20 text-pink-300 text-xs font-semibold mb-2">
+                                    <i class="fa-solid fa-cubes text-pink-400"></i>
+                                    5 MAIN CATEGORIES
+                                </div>
+                                <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-normal drop-shadow-md">
+                                    Types of <span class="text-gradient-creative">Creativity</span>
+                                </h2>
+                            </div>
+                            <p class="text-slate-400 text-xs sm:text-sm max-w-md">
+                                Creativity takes place everywhere—from art studios to scientific labs and web coding.
+                            </p>
+                        </div>
+
+                        <!-- 5 Dimension Cards -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-2">
+
+                            <!-- Artistic -->
+                            <div class="glass-panel rounded-2xl overflow-hidden border border-pink-500/30 hover:scale-105 transition duration-300 flex flex-col justify-between group h-60 relative">
+                                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=400&q=80" alt="Artistic Dimension" class="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-40 transition duration-500">
+                                <div class="relative z-10 p-3.5 space-y-1.5">
+                                    <div class="w-9 h-9 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-400">
+                                        <i class="fa-solid fa-paintbrush text-sm"></i>
+                                    </div>
+                                    <h3 class="font-bold text-base text-white">1. Artistic</h3>
+                                    <p class="text-[11px] text-slate-300">Painting, music, photography & graphic design.</p>
+                                </div>
+                                <div class="relative z-10 p-3 border-t border-slate-800/60 bg-slate-950/60 backdrop-blur-sm">
+                                    <span class="text-[10px] font-bold text-pink-400 uppercase tracking-wider">Expression</span>
+                                </div>
+                            </div>
+
+                            <!-- Scientific -->
+                            <div class="glass-panel rounded-2xl overflow-hidden border border-purple-500/30 hover:scale-105 transition duration-300 flex flex-col justify-between group h-60 relative">
+                                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=400&q=80" alt="Scientific Dimension" class="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-40 transition duration-500">
+                                <div class="relative z-10 p-3.5 space-y-1.5">
+                                    <div class="w-9 h-9 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400">
+                                        <i class="fa-solid fa-flask text-sm"></i>
+                                    </div>
+                                    <h3 class="font-bold text-base text-white">2. Scientific</h3>
+                                    <p class="text-[11px] text-slate-300">Inventions, research & logical problem solving.</p>
+                                </div>
+                                <div class="relative z-10 p-3 border-t border-slate-800/60 bg-slate-950/60 backdrop-blur-sm">
+                                    <span class="text-[10px] font-bold text-purple-400 uppercase tracking-wider">Discovery</span>
+                                </div>
+                            </div>
+
+                            <!-- Business -->
+                            <div class="glass-panel rounded-2xl overflow-hidden border border-cyan-500/30 hover:scale-105 transition duration-300 flex flex-col justify-between group h-60 relative">
+                                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=400&q=80" alt="Business Dimension" class="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-40 transition duration-500">
+                                <div class="relative z-10 p-3.5 space-y-1.5">
+                                    <div class="w-9 h-9 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400">
+                                        <i class="fa-solid fa-chart-pie text-sm"></i>
+                                    </div>
+                                    <h3 class="font-bold text-base text-white">3. Business</h3>
+                                    <p class="text-[11px] text-slate-300">Marketing campaigns & startup innovation.</p>
+                                </div>
+                                <div class="relative z-10 p-3 border-t border-slate-800/60 bg-slate-950/60 backdrop-blur-sm">
+                                    <span class="text-[10px] font-bold text-cyan-400 uppercase tracking-wider">Growth</span>
+                                </div>
+                            </div>
+
+                            <!-- Digital -->
+                            <div class="glass-panel-glow rounded-2xl overflow-hidden border-2 border-amber-400/80 hover:scale-105 transition duration-300 flex flex-col justify-between group h-60 relative shadow-lg shadow-amber-500/20">
+                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=80" alt="Digital Web Dimension" class="absolute inset-0 w-full h-full object-cover opacity-35 group-hover:opacity-50 transition duration-500">
+                                <div class="relative z-10 p-3.5 space-y-1.5">
+                                    <div class="w-9 h-9 rounded-xl bg-amber-500/30 flex items-center justify-center text-amber-300">
+                                        <i class="fa-solid fa-laptop-code text-sm"></i>
+                                    </div>
+                                    <h3 class="font-bold text-base text-amber-200">4. Digital</h3>
+                                    <p class="text-[11px] text-slate-100 font-medium">Web design, coding & modern UI apps.</p>
+                                </div>
+                                <div class="relative z-10 p-3 border-t border-amber-500/30 bg-slate-950/80 backdrop-blur-sm">
+                                    <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider">Our Domain</span>
+                                </div>
+                            </div>
+
+                            <!-- Social -->
+                            <div class="glass-panel rounded-2xl overflow-hidden border border-emerald-500/30 hover:scale-105 transition duration-300 flex flex-col justify-between group h-60 relative">
+                                <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=400&q=80" alt="Social Rotaract Dimension" class="absolute inset-0 w-full h-full object-cover opacity-25 group-hover:opacity-40 transition duration-500">
+                                <div class="relative z-10 p-3.5 space-y-1.5">
+                                    <div class="w-9 h-9 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+                                        <i class="fa-solid fa-hands-holding-circle text-sm"></i>
+                                    </div>
+                                    <h3 class="font-bold text-base text-white">5. Social</h3>
+                                    <p class="text-[11px] text-slate-300">Rotaract service & community leadership.</p>
+                                </div>
+                                <div class="relative z-10 p-3 border-t border-slate-800/60 bg-slate-950/60 backdrop-blur-sm">
+                                    <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">Community</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 5: HOW TO DEVELOP CREATIVITY -->
+                <div class="slide" data-slide="5" data-notes="How do we build creativity? By staying curious, learning daily, embracing mistakes, and practicing regularly!">
+                    <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-5 relative">
+                            <div class="img-creative-wrapper h-88">
+                                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=800&q=80" alt="Learning and Practice" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                                <div class="absolute bottom-4 left-4 right-4 text-left">
+                                    <span class="text-xs bg-emerald-600 text-white font-bold px-3 py-1 rounded-full">Practice Daily</span>
+                                    <p class="text-xs text-slate-200 mt-2 font-medium">"Creativity is like a muscle—it grows stronger with daily practice."</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-7 space-y-4 text-left">
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-semibold">
+                                <i class="fa-solid fa-seedling text-emerald-400"></i>
+                                SIMPLE STEPS TO GROW
+                            </div>
+
+                            <div class="space-y-1">
+                                <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-normal drop-shadow-md">
+                                    How to Develop <span class="text-gradient-creative">Creativity</span>
+                                </h2>
+                                <div class="w-24 h-1 bg-gradient-to-r from-emerald-400 to-cyan-500 rounded-full"></div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                                <div class="glass-panel p-3.5 rounded-xl flex items-start space-x-3">
+                                    <div class="w-7 h-7 rounded-lg bg-pink-500/20 text-pink-400 flex items-center justify-center font-bold text-xs flex-shrink-0">1</div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-white">Stay Curious</h4>
+                                        <p class="text-[11px] text-slate-400">Always ask "What if...?" when looking at apps or designs.</p>
+                                    </div>
+                                </div>
+
+                                <div class="glass-panel p-3.5 rounded-xl flex items-start space-x-3">
+                                    <div class="w-7 h-7 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xs flex-shrink-0">2</div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-white">Keep Learning</h4>
+                                        <p class="text-[11px] text-slate-400">Read books and explore new topics outside your class.</p>
+                                    </div>
+                                </div>
+
+                                <div class="glass-panel p-3.5 rounded-xl flex items-start space-x-3">
+                                    <div class="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-xs flex-shrink-0">3</div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-white">Learn From Mistakes</h4>
+                                        <p class="text-[11px] text-slate-400">Treat coding bugs or errors as helpful steps to improve.</p>
+                                    </div>
+                                </div>
+
+                                <div class="glass-panel p-3.5 rounded-xl flex items-start space-x-3">
+                                    <div class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xs flex-shrink-0">4</div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-white">Practice Every Day</h4>
+                                        <p class="text-[11px] text-slate-400">Build small code projects or posters regularly.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Highlights Box -->
+                            <div class="p-3.5 rounded-xl bg-gradient-to-r from-emerald-950/40 to-slate-900 border border-emerald-500/30 flex items-center space-x-3">
+                                <i class="fa-solid fa-star text-emerald-400 text-xl"></i>
+                                <div>
+                                    <p class="text-xs font-bold text-emerald-200">The Simple Rule</p>
+                                    <p class="text-xs text-slate-300">Curiosity + Practice = High-Impact Creative Projects!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 6: WEB & MARKETING SERVICES -->
+                <div class="slide" data-slide="6" data-notes="This slide directly shows our domain: Websites are not just plain pages! With creative design, websites become automated marketing tools. Try the ROI slider below!">
+                    <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-6 space-y-4 text-left">
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-semibold">
+                                <i class="fa-solid fa-laptop-code text-amber-400"></i>
+                                OUR DOMAIN: WEB & MARKETING
+                            </div>
+
+                            <div class="space-y-1">
+                                <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-normal drop-shadow-md">
+                                    Creativity in <span class="text-gradient-creative">Web & Marketing</span>
+                                </h2>
+                                <div class="w-24 h-1 bg-gradient-to-r from-amber-400 to-pink-500 rounded-full"></div>
+                            </div>
+
+                            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                                "Websites shouldn't just exist—they should offer automated marketing services through attractive design. When a site looks amazing, people trust it instantly."
+                            </p>
+
+                            <!-- 3 Clear Points -->
+                            <div class="space-y-2">
+                                <div class="glass-panel p-3 rounded-xl flex items-center space-x-3 border-l-4 border-l-cyan-400">
+                                    <i class="fa-solid fa-eye text-cyan-400 text-sm"></i>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-white">Instant Visual Attraction</h4>
+                                        <p class="text-[11px] text-slate-400">Stunning visuals keep visitors on your website longer.</p>
+                                    </div>
+                                </div>
+
+                                <div class="glass-panel p-3 rounded-xl flex items-center space-x-3 border-l-4 border-l-pink-400">
+                                    <i class="fa-solid fa-bullhorn text-pink-400 text-sm"></i>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-white">Automated Marketing Tool</h4>
+                                        <p class="text-[11px] text-slate-400">Interactive web pages automatically showcase services and capture leads.</p>
+                                    </div>
+                                </div>
+
+                                <div class="glass-panel p-3 rounded-xl flex items-center space-x-3 border-l-4 border-l-purple-400">
+                                    <i class="fa-solid fa-trophy text-purple-400 text-sm"></i>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-white">Outperforms Boring Pages</h4>
+                                        <p class="text-[11px] text-slate-400">Beats static templates by creating strong brand impression.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Side: Interactive Marketing ROI Simulator -->
+                        <div class="lg:col-span-6 relative">
+                            <div class="glass-panel p-4 rounded-2xl border border-pink-500/40 shadow-2xl space-y-3">
+                                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                                    <div class="flex items-center space-x-2">
+                                        <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+                                        <div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
+                                        <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+                                        <span class="text-[11px] text-slate-400 ml-2 font-mono">web-marketing-demo.io</span>
+                                    </div>
+                                    <span class="text-[10px] bg-pink-500/20 text-pink-300 font-bold px-2.5 py-0.5 rounded-full border border-pink-500/30">DEMO ENGINE</span>
+                                </div>
+
+                                <div class="bg-slate-900/90 p-3.5 rounded-xl border border-slate-800 space-y-2.5">
+                                    <h4 class="text-xs font-bold text-slate-200 uppercase tracking-wider">Live Web Marketing Lead Calculator</h4>
+                                    
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between text-xs">
+                                            <span class="text-slate-400">Monthly Website Visitors:</span>
+                                            <span id="visitorVal" class="text-cyan-400 font-bold">10,000</span>
+                                        </div>
+                                        <input type="range" id="visitorSlider" min="1000" max="50000" step="1000" value="10000" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer" oninput="calculateROI()">
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-2 pt-1">
+                                        <div class="p-2.5 rounded-lg bg-slate-950/80 border border-red-500/30 text-left">
+                                            <p class="text-[10px] text-slate-400">Boring Static Website (1%)</p>
+                                            <p id="standardConversions" class="text-xs sm:text-sm font-extrabold text-red-400">100 Leads / mo</p>
+                                        </div>
+                                        <div class="p-2.5 rounded-lg bg-slate-950/80 border border-emerald-500/40 text-left">
+                                            <p class="text-[10px] text-emerald-300 font-semibold">Creative Web Engine (4.5%)</p>
+                                            <p id="creativeConversions" class="text-xs sm:text-sm font-extrabold text-emerald-400">450 Leads / mo</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="p-2.5 rounded-lg bg-gradient-to-r from-purple-900/40 to-pink-900/40 border border-pink-500/30 text-center">
+                                        <p class="text-[11px] text-slate-300">
+                                            Creative web design gains <strong id="leadGain" class="text-pink-400 font-bold">+350 extra leads</strong> every month!
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <p class="text-xs text-slate-300 font-semibold italic">
+                                        "Creative Web Design turns code into an automated marketing machine."
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 7: CREATIVITY IN EVERYDAY & COLLEGE LIFE -->
+                <div class="slide" data-slide="7" data-notes="Creativity is not just for artists! We use it in college presentations, poster designs, project work, and Rotaract community service.">
+                    <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <!-- Left Side Photo Collage -->
+                        <div class="lg:col-span-5 relative">
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="img-creative-wrapper h-40">
+                                    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=600&q=80" alt="Event Organizing" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                                    <span class="absolute bottom-1.5 left-2 text-[10px] font-bold text-white">Event Organizing</span>
+                                </div>
+                                <div class="img-creative-wrapper h-40 mt-3">
+                                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" alt="Rotaract Service" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                                    <span class="absolute bottom-1.5 left-2 text-[10px] font-bold text-white">Rotaract Service</span>
+                                </div>
+                                <div class="img-creative-wrapper h-40 -mt-1">
+                                    <img src="https://images.unsplash.com/photo-1542744094-3a3172720189?auto=format&fit=crop&w=600&q=80" alt="Poster Design" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                                    <span class="absolute bottom-1.5 left-2 text-[10px] font-bold text-white">Poster Design</span>
+                                </div>
+                                <div class="img-creative-wrapper h-40 mt-2">
+                                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Project Work" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                                    <span class="absolute bottom-1.5 left-2 text-[10px] font-bold text-white">Project Work</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-7 space-y-4 text-left">
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-semibold">
+                                <i class="fa-solid fa-graduation-cap text-cyan-400"></i>
+                                EVERYDAY & COLLEGE APPLICATIONS
+                            </div>
+
+                            <div class="space-y-1">
+                                <h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-normal drop-shadow-md">
+                                    Creativity in <span class="text-gradient-creative">Everyday Life</span>
+                                </h2>
+                                <div class="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full"></div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="glass-panel p-3 rounded-xl flex items-center space-x-3">
+                                    <i class="fa-solid fa-desktop text-pink-400 text-sm"></i>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-white">Posters & Presentations</h4>
+                                        <p class="text-[11px] text-slate-400">Designing slides that capture everyone's interest.</p>
+                                    </div>
+                                </div>
+
+                                <div class="glass-panel p-3 rounded-xl flex items-center space-x-3">
+                                    <i class="fa-solid fa-diagram-project text-purple-400 text-sm"></i>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-white">College Project Work</h4>
+                                        <p class="text-[11px] text-slate-400">Solving assignment challenges with fresh logic.</p>
+                                    </div>
+                                </div>
+
+                                <div class="glass-panel p-3 rounded-xl flex items-center space-x-3">
+                                    <i class="fa-solid fa-hands-holding-circle text-emerald-400 text-sm"></i>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-white">Rotaract Service Drives</h4>
+                                        <p class="text-[11px] text-slate-400">Organizing community service projects.</p>
+                                    </div>
+                                </div>
+
+                                <div class="glass-panel p-3 rounded-xl flex items-center space-x-3">
+                                    <i class="fa-solid fa-photo-film text-amber-400 text-sm"></i>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-white">Social Media Content</h4>
+                                        <p class="text-[11px] text-slate-400">Creating reels and digital posters.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Takeaway Banner -->
+                            <div class="p-3.5 rounded-2xl bg-gradient-to-r from-purple-900/60 via-pink-900/40 to-slate-900 border border-pink-500/40 shadow-xl">
+                                <p class="text-[11px] uppercase tracking-wider font-bold text-pink-300 mb-0.5">CORE MESSAGE</p>
+                                <p class="text-sm sm:text-base font-semibold text-white italic">
+                                    "Creativity is not limited to artists—it belongs to everyone!"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 8: CONCLUSION & Q&A -->
+                <div class="slide" data-slide="8" data-notes="Conclude the presentation. Thank the teacher and classmates, and invite everyone for questions and discussion!">
+                    <div class="max-w-4xl w-full text-center space-y-5 glass-panel-glow p-8 sm:p-12 rounded-3xl border border-pink-500/30 shadow-2xl relative overflow-hidden">
+                        
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-pink-500 via-purple-600 to-cyan-400 p-[2px] mx-auto shadow-xl shadow-pink-500/20">
+                            <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
+                                <i class="fa-solid fa-heart text-pink-400 text-2xl animate-bounce"></i>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <h2 class="font-display text-4xl sm:text-6xl font-extrabold text-white tracking-normal drop-shadow-md">
+                                Thank <span class="text-gradient-creative">You!</span>
+                            </h2>
+                            <p class="text-slate-200 text-base sm:text-2xl font-light italic max-w-2xl mx-auto leading-relaxed">
+                                "The world always needs new ideas. Be the person who creates them."
+                            </p>
+                        </div>
+
+                        <!-- Team Credit Card -->
+                        <div class="pt-3 border-t border-slate-800 flex flex-wrap items-center justify-center gap-2.5 text-xs text-slate-300">
+                            <span class="font-bold text-pink-400">GE Team 5:</span>
+                            <span class="bg-slate-900 px-3 py-1 rounded-full border border-slate-800">Chandra Shekar Behara</span>
+                            <span class="bg-slate-900 px-3 py-1 rounded-full border border-slate-800">Anamika</span>
+                            <span class="bg-slate-900 px-3 py-1 rounded-full border border-slate-800">Josh Bekashah S J</span>
+                        </div>
+
+                        <!-- Action Controls -->
+                        <div class="pt-3 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div class="text-left">
+                                <p class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Classroom Presentation</p>
+                                <p class="text-sm font-semibold text-white">Open Floor for Questions & Discussion</p>
+                            </div>
+
+                            <div class="flex items-center space-x-3">
+                                <button onclick="goToSlide(1)" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold text-xs shadow-lg shadow-pink-500/20 hover:opacity-90 transition">
+                                    <i class="fa-solid fa-rotate-left mr-1.5"></i> Replay Presentation
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-pink-500/10 rounded-full blur-2xl"></div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- FOOTER / SLIDE NAVIGATION CONTROLS -->
+        <footer class="glass-panel rounded-2xl px-5 py-3 flex items-center justify-between z-50">
+            <!-- Left: Keyboard Legend -->
+            <div class="hidden sm:flex items-center space-x-3 text-xs text-slate-400">
+                <span class="flex items-center gap-1 bg-slate-900 px-2 py-1 rounded border border-slate-800"><kbd class="text-white font-mono">←</kbd> <kbd class="text-white font-mono">→</kbd> Nav</span>
+                <span class="flex items-center gap-1 bg-slate-900 px-2 py-1 rounded border border-slate-800"><kbd class="text-white font-mono">Space</kbd> Next</span>
+            </div>
+
+            <!-- Center: Dot Indicators -->
+            <div class="flex items-center space-x-2" id="dotsContainer">
+                <!-- Dots generated dynamically via JS -->
+            </div>
+
+            <!-- Right: Next/Prev Buttons -->
+            <div class="flex items-center space-x-3">
+                <button onclick="prevSlide()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition flex items-center space-x-1.5 shadow-lg">
+                    <i class="fa-solid fa-chevron-left text-xs"></i>
+                    <span>Prev</span>
+                </button>
+                <button onclick="nextSlide()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold text-xs shadow-lg shadow-pink-500/20 transition flex items-center space-x-1.5">
+                    <span>Next</span>
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                </button>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- MODAL 1: PRESENTER CLASSROOM SCRIPT -->
+    <div id="presenterNotesModal" class="fixed inset-x-4 top-20 max-w-xl mx-auto z-50 glass-panel-glow p-5 rounded-2xl border border-amber-500/40 shadow-2xl hidden transition">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-book-open text-amber-400"></i>
+                <h3 class="text-xs font-bold text-amber-200 uppercase tracking-wider">PRESENTER CLASSROOM SCRIPT</h3>
+            </div>
+            <button onclick="togglePresenterNotes()" class="text-slate-400 hover:text-white text-sm">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div id="presenterNotesText" class="text-xs text-slate-200 leading-relaxed font-sans max-h-48 overflow-y-auto">
+            <!-- Populated dynamically -->
+        </div>
+    </div>
+
+    <!-- MODAL 2: SLIDE GRID OVERVIEW -->
+    <div id="gridModal" class="fixed inset-0 z-50 glass-panel bg-slate-950/95 backdrop-blur-2xl p-6 sm:p-10 flex flex-col justify-between hidden transition">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+            <div>
+                <h2 class="font-display text-xl font-bold text-white">Slide Overview Grid</h2>
+                <p class="text-xs text-slate-400">Click any slide thumbnail to jump directly to it.</p>
+            </div>
+            <button onclick="toggleGridModal()" class="w-10 h-10 rounded-xl bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 my-6 overflow-y-auto max-h-[70vh] p-2" id="gridModalContent">
+            <!-- Generated dynamically -->
+        </div>
+
+        <div class="text-center text-xs text-slate-400 border-t border-slate-800 pt-3">
+            Press <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700 text-white font-mono">Esc</kbd> to return to presentation.
+        </div>
+    </div>
+
+    <!-- MODAL 3: CLASSROOM IDEA GENERATOR WORKSHOP -->
+    <div id="workshopModal" class="fixed inset-0 z-50 glass-panel bg-slate-950/90 backdrop-blur-2xl p-6 sm:p-10 flex flex-col justify-center items-center hidden transition">
+        <div class="max-w-xl w-full glass-panel-glow p-6 sm:p-8 rounded-3xl border border-purple-500/40 shadow-2xl space-y-5 text-left relative">
+            <button onclick="toggleWorkshopModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400">
+                    <i class="fa-solid fa-wand-magic-sparkles text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="font-display text-lg font-bold text-white">Classroom Idea Prompt Generator</h3>
+                    <p class="text-xs text-slate-400">Use this during Q&A to challenge your classmates!</p>
+                </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 text-sm text-slate-200 min-h-[80px] flex items-center" id="promptDisplay">
+                Click "Generate Prompt" to pick a creative problem-solving question for the class!
+            </div>
+
+            <button onclick="generateIdeaPrompt()" class="w-full py-3 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold text-xs shadow-lg hover:opacity-90 transition">
+                <i class="fa-solid fa-dice mr-2"></i> Generate Creative Classroom Challenge
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let autoPlayInterval = null;
+        let isAutoPlaying = false;
+
+        document.getElementById('slideTotal').textContent = totalSlides.toString().padStart(2, '0');
+
+        function initNavigationUI() {
+            const dotsContainer = document.getElementById('dotsContainer');
+            const gridModalContent = document.getElementById('gridModalContent');
+
+            dotsContainer.innerHTML = '';
+            gridModalContent.innerHTML = '';
+
+            slides.forEach((slide, idx) => {
+                const slideNum = idx + 1;
+
+                // Dot
+                const dot = document.createElement('button');
+                dot.className = `w-2.5 h-2.5 rounded-full transition-all duration-300 ${idx === 0 ? 'bg-pink-500 w-7' : 'bg-slate-700 hover:bg-slate-500'}`;
+                dot.title = `Go to Slide ${slideNum}`;
+                dot.onclick = () => goToSlide(slideNum);
+                dotsContainer.appendChild(dot);
+
+                // Grid Card
+                const gridCard = document.createElement('div');
+                gridCard.className = `glass-panel p-4 rounded-xl border cursor-pointer hover:border-pink-500 transition text-left space-y-2 ${idx === 0 ? 'border-pink-500 bg-pink-500/10' : 'border-slate-800'}`;
+                
+                const slideTitle = slide.querySelector('h1, h2')?.innerText.replace('\n', ' ') || `Slide ${slideNum}`;
+                
+                gridCard.innerHTML = `
+                    <div class="flex items-center justify-between text-[11px] font-bold text-slate-400">
+                        <span>SLIDE ${slideNum.toString().padStart(2, '0')}</span>
+                        ${idx === 0 ? '<span class="text-pink-400 font-bold">Active</span>' : ''}
+                    </div>
+                    <p class="text-xs font-semibold text-white truncate">${slideTitle}</p>
+                `;
+                gridCard.onclick = () => {
+                    goToSlide(slideNum);
+                    toggleGridModal();
+                };
+                gridModalContent.appendChild(gridCard);
+            });
+        }
+
+        function updateSlideDisplay() {
+            slides.forEach((slide, idx) => {
+                slide.classList.remove('active', 'exit-left');
+                if (idx === currentSlideIndex) {
+                    slide.classList.add('active');
+                } else if (idx < currentSlideIndex) {
+                    slide.classList.add('exit-left');
+                }
+            });
+
+            // Update Counter
+            document.getElementById('slideCurrent').textContent = (currentSlideIndex + 1).toString().padStart(2, '0');
+
+            // Update Dots
+            const dots = document.getElementById('dotsContainer').children;
+            Array.from(dots).forEach((dot, idx) => {
+                if (idx === currentSlideIndex) {
+                    dot.className = 'w-7 h-2.5 rounded-full bg-pink-500 transition-all duration-300';
+                } else {
+                    dot.className = 'w-2.5 h-2.5 rounded-full bg-slate-700 hover:bg-slate-500 transition-all duration-300';
+                }
+            });
+
+            // Update Presenter Notes
+            const currentNotes = slides[currentSlideIndex].getAttribute('data-notes') || 'No presenter notes available for this slide.';
+            document.getElementById('presenterNotesText').textContent = currentNotes;
+        }
+
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+            updateSlideDisplay();
+        }
+
+        function prevSlide() {
+            currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+            updateSlideDisplay();
+        }
+
+        function goToSlide(slideNum) {
+            if (slideNum >= 1 && slideNum <= totalSlides) {
+                currentSlideIndex = slideNum - 1;
+                updateSlideDisplay();
+            }
+        }
+
+        function toggleAutoPlay() {
+            const btn = document.getElementById('autoPlayBtn');
+            const icon = document.getElementById('autoPlayIcon');
+            const text = document.getElementById('autoPlayText');
+
+            if (isAutoPlaying) {
+                clearInterval(autoPlayInterval);
+                isAutoPlaying = false;
+                icon.className = 'fa-solid fa-play text-pink-400';
+                text.textContent = 'Auto-Play';
+                btn.classList.remove('border-pink-500', 'bg-pink-500/20');
+            } else {
+                nextSlide();
+                autoPlayInterval = setInterval(nextSlide, 6000); // 6s per slide
+                isAutoPlaying = true;
+                icon.className = 'fa-solid fa-pause text-pink-400';
+                text.textContent = 'Pause';
+                btn.classList.add('border-pink-500', 'bg-pink-500/20');
+            }
+        }
+
+        function toggleGridModal() {
+            document.getElementById('gridModal').classList.toggle('hidden');
+        }
+
+        function togglePresenterNotes() {
+            document.getElementById('presenterNotesModal').classList.toggle('hidden');
+        }
+
+        function toggleWorkshopModal() {
+            document.getElementById('workshopModal').classList.toggle('hidden');
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => console.log(err));
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Live Marketing Calculator for Slide 6
+        function calculateROI() {
+            const visitors = parseInt(document.getElementById('visitorSlider').value);
+            document.getElementById('visitorVal').textContent = visitors.toLocaleString();
+
+            const standard = Math.round(visitors * 0.01);
+            const creative = Math.round(visitors * 0.045);
+            const gain = creative - standard;
+
+            document.getElementById('standardConversions').textContent = `${standard.toLocaleString()} Leads / mo`;
+            document.getElementById('creativeConversions').textContent = `${creative.toLocaleString()} Leads / mo`;
+            document.getElementById('leadGain').textContent = `+${gain.toLocaleString()} additional leads`;
+        }
+
+        // Classroom Idea Generator Prompts
+        const prompts = [
+            "💡 How could we redesign a college canteen app using Creative UX to eliminate waiting lines?",
+            "🎨 How can Rotaract use creative video marketing to double volunteer turnout for community drives?",
+            "💻 What creative web feature would make a student portfolio stand out to top tech recruiters immediately?",
+            "🚀 If you had to rebrand a traditional bookstore using creative digital tools, what would you launch?",
+            "🧠 How can creativity bridge the gap between hard engineering code and beautiful artistic design?"
+        ];
+
+        function generateIdeaPrompt() {
+            const random = prompts[Math.floor(Math.random() * prompts.length)];
+            document.getElementById('promptDisplay').textContent = random;
+        }
+
+        // Keyboard Controls
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'g' || e.key === 'G') {
+                toggleGridModal();
+            } else if (e.key === 's' || e.key === 'S') {
+                togglePresenterNotes();
+            } else if (e.key === 'Escape') {
+                document.getElementById('gridModal').classList.add('hidden');
+                document.getElementById('presenterNotesModal').classList.add('hidden');
+                document.getElementById('workshopModal').classList.add('hidden');
+            }
+        });
+
+        // Ambient Particle System Canvas
+        function initAmbientCanvas() {
+            const canvas = document.getElementById('ambientCanvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+
+            window.addEventListener('resize', resize);
+            resize();
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.radius = Math.random() * 2 + 0.5;
+                    this.vx = (Math.random() - 0.5) * 0.3;
+                    this.vy = (Math.random() - 0.5) * 0.3;
+                    this.color = ['rgba(217, 70, 239, ', 'rgba(6, 182, 212, ', 'rgba(168, 85, 247, '][Math.floor(Math.random() * 3)];
+                    this.alpha = Math.random() * 0.5 + 0.2;
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    if (this.x < 0 || this.x > width) this.vx *= -1;
+                    if (this.y < 0 || this.y > height) this.vy *= -1;
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color + this.alpha + ')';
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < 50; i++) {
+                particles.push(new Particle());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+
+        window.onload = function() {
+            initNavigationUI();
+            updateSlideDisplay();
+            initAmbientCanvas();
+            calculateROI();
+        };
+    </script>
+</body>
+</html>
